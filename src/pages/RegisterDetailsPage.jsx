@@ -6,12 +6,13 @@ import { useAuth } from "../components/authContext";
 export default function RegisterDetailsPage() {
     const { state } = useLocation(); // מגיע מ-navigate של שלב 1
     const navigate = useNavigate();
-    const { login } = useAuth();
+    const { setLoggedUser } = useAuth();
 
-    // אם נכנסו ישירות בלי state:
-    if (!state?.username || !state?.password) {
-        navigate("/register", { replace: true });
-    }
+    useEffect(() => {
+        if (!state?.username || !state?.password) {
+            navigate("/register", { replace: true });
+        }
+    }, [state, navigate]);
 
     const [form, setForm] = useState({
         fullName: "",
@@ -49,9 +50,8 @@ export default function RegisterDetailsPage() {
                 body: JSON.stringify(newUser),
             });
 
-            if (!res.ok) throw new Error("POST failed");
-            const created = await res.json();
-
+            if (!res.ok) throw new Error("POST failed");{
+            const created = await res.json();}
             setLoggedUser(created);
             navigate("/home");
         } catch (err) {

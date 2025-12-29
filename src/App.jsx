@@ -20,7 +20,7 @@ function App() {
           <Route path="/register/details" element={<RegisterDetailsPage />} />
 
 
-          <Route index element={<HomePage />} />
+          <Route path="/home" element={<HomePage />} />
           {/* <Route path="todos" element={<TodosPage />} />
           <Route path="posts" element={<PostsPage />} />
           <Route path="albums" element={<AlbumsPage />} />
