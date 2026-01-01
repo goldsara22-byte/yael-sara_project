@@ -1,59 +1,33 @@
+
 import { NavLink, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useAuth } from "./authContext.jsx";
+import { useAuth } from "./AuthContext";
 
 export default function MyHeader() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-  const [showInfo, setShowInfo] = useState(false);
 
-  const handleLogout = () => {
-    logout();            // מוחק LS + user מה-context
-    navigate("/login");  // חזרה לעמוד כניסה
+  const onLogout = () => {
+    logout();
+    navigate("/login", { replace: true });//*
   };
 
   return (
-    <>
-      {/* HEADER */}
-      <header style={{ display: "flex", gap: 12, alignItems: "center" }}>
-        <strong>{user.name}</strong>
+    <div style={{ display: "flex", gap: 10, alignItems: "center", padding: 10 }}>
+      <div style={{ fontWeight: "bold" }}>
+        {user ? `Welcome, ${user.name}` : "App"}
+      </div>
 
-        <button onClick={() => setShowInfo(true)}>Info</button>
+      <nav style={{ marginLeft: 20 }}>
+        <NavLink to="/home" style={{ marginRight: 8 }}>Home</NavLink>
+        <NavLink to="/home/info" style={{ marginRight: 8 }}>Info</NavLink>
+        <NavLink to="/home/todos" style={{ marginRight: 8 }}>Todos</NavLink>
+        <NavLink to="/home/posts" style={{ marginRight: 8 }}>Posts</NavLink>
+        <NavLink to="/home/albums" style={{ marginRight: 8 }}>Albums</NavLink>
+      </nav>
 
-        <NavLink to="/todos">Todos</NavLink>
-        <NavLink to="/posts">Posts</NavLink>
-        <NavLink to="/albums">Albums</NavLink>
-
-        <button onClick={handleLogout}>Logout</button>
-      </header>
-
-      {/* INFO – מסך על גבי העמוד */}
-      {showInfo && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(0,0,0,0.4)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          onClick={() => setShowInfo(false)}
-        >
-          <div
-            style={{ background: "white", padding: 16 }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h3>User Info</h3>
-            <p><b>Name:</b> {user.name}</p>
-            <p><b>Username:</b> {user.username}</p>
-            <p><b>Email:</b> {user.email}</p>
-            <p><b>Website:</b> {user.website}</p>
-
-            <button onClick={() => setShowInfo(false)}>Close</button>
-          </div>
-        </div>
-      )}
-    </>
+      <div style={{ marginLeft: "auto" }}>
+        <button onClick={onLogout}>Logout</button>
+      </div>
+    </div>
   );
 }

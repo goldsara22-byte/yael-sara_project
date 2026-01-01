@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useAuth } from "../components/authContext";
+import { useEffect, useState } from "react";
+import { useAuth } from "../components/AuthContext";
 
 
 export default function RegisterDetailsPage() {
@@ -44,16 +44,18 @@ export default function RegisterDetailsPage() {
         try {
             setLoading(true);
 
-            const res = await fetch("http://localhost:3001/users", {
+            const res = await fetch("http://localhost:3000/users", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(newUser),
             });
 
-            if (!res.ok) throw new Error("POST failed");{
-            const created = await res.json();}
+            if (!res.ok) throw new Error("POST failed");
+
+            const created = await res.json();
             setLoggedUser(created);
             navigate("/home");
+
         } catch (err) {
             setError("שגיאה בשמירת המשתמש");
         } finally {

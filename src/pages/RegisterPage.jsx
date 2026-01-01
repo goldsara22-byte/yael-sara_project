@@ -28,7 +28,7 @@ export default function RegisterPage() {
         try {
             setLoading(true);
 
-            const res = await fetch(`http://localhost:3001/users?username=${encodeURIComponent(form.username)}`);
+            const res = await fetch(`http://localhost:3000/users?username=${encodeURIComponent(form.username)}`);
             const users = await res.json();
 
             if (users.length > 0) {

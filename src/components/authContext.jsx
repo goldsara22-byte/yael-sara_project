@@ -39,6 +39,6 @@ export function AuthProvider({ children }) {
         localStorage.removeItem(LS_KEY);
     }
 
-    const value = { user, login, logout,  setLoggedUser};
+    const value = { user, login, logout, setLoggedUser };
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

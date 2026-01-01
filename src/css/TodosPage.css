@@ -1,0 +1,49 @@
+/* src/pages/TodosPage.css */
+.todos-page {
+  padding: 12px;
+}
+
+.todos-title {
+  margin: 0 0 12px;
+}
+
+.todos-list {
+  display: grid;
+  gap: 8px;
+}
+
+.todo-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.todo-id {
+  width: 70px;
+  font-weight: bold;
+}
+
+.todo-title {
+  flex: 1;
+}
+
+.todo-done {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.todos-empty {
+  padding: 8px 0;
+}
+
+
+.todos-controls {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
