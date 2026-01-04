@@ -10,6 +10,7 @@ import RegisterDetailsPage from './pages/RegisterDetailsPage.jsx'
 import './App.css'
 import InfoPage from './pages/infoPage.jsx'
 import TodosPage from './pages/TodosPage.jsx'
+import PostsPage from './pages/PostsPage.jsx'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/home/*" element={<HomePage />}>
             <Route path="info" element={<InfoPage />} />
             <Route path="todos" element={<TodosPage />} />
+            <Route path="posts" element={<PostsPage />} />
             {/* <Route path="todos" element={<TodosPage />} />
             <Route path="posts" element={<PostsPage />} />
             <Route path="albums" element={<AlbumsPage />} /> */}

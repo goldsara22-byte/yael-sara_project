@@ -16,8 +16,12 @@ export function AuthProvider({ children }) {
 
     async function login(username, password) {
         // לפי ההוראות: username מהשרת, וסיסמה = website
-        const res = await fetch(`http://localhost:3000/users?username=${username}`);
+        const res = await fetch(`http://localhost:3000/users?username=${encodeURIComponent(username)}`, {
+            method: "GET",
+        });
+
         const users = await res.json();
+        if (!res.ok) return { ok: false, msg: "שגיאת שרת" };
 
         if (users.length === 0) return { ok: false, msg: "שם משתמש לא קיים" };
 

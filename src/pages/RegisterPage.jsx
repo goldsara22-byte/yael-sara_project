@@ -28,7 +28,12 @@ export default function RegisterPage() {
         try {
             setLoading(true);
 
-            const res = await fetch(`http://localhost:3000/users?username=${encodeURIComponent(form.username)}`);
+            const res = await fetch(
+                `http://localhost:3000/users?username=${encodeURIComponent(form.username)}`,
+                { method: "GET" }
+            );
+            if (!res.ok) return { ok: false, msg: "שגיאת שרת" };
+
             const users = await res.json();
 
             if (users.length > 0) {
