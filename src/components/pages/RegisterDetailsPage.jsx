@@ -1,12 +1,12 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useAuth } from "../components/AuthContext";
+import { useAuth } from "../AuthContext.jsx";
 
 
 export default function RegisterDetailsPage() {
     const { state } = useLocation(); // מגיע מ-navigate של שלב 1
     const navigate = useNavigate();
-    const { setLoggedUser } = useAuth();
+    const { register } = useAuth();
 
     useEffect(() => {
         if (!state?.username || !state?.password) {
@@ -42,18 +42,8 @@ export default function RegisterDetailsPage() {
         };
 
         try {
+            register(newUser);
             setLoading(true);
-            
-            const res = await fetch("http://localhost:3000/users", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(newUser),
-            });
-
-            if (!res.ok) throw new Error("POST failed");
-
-            const created = await res.json();
-            setLoggedUser(created);
             navigate("/home");
 
         } catch (err) {

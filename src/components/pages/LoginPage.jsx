@@ -1,6 +1,6 @@
 import  { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../components/AuthContext";
+import { useAuth } from "../AuthContext.jsx";
 
 export default function LoginPage() {
   const { login } = useAuth();
@@ -11,7 +11,6 @@ export default function LoginPage() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/home";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -25,14 +24,17 @@ export default function LoginPage() {
         return;
       }
       // Success -> navigate to protected area (preserve original route)
-      navigate(from, { replace: true });
-    } finally {
+      navigate("/home", { replace: true });
+    } catch (err) {
+      setError("שגיאה בכניסה");
+    }
+    finally {
       setLoading(false);
     }
   };
 
   return (
-    <div style={{ padding: 20 }}>
+    <div >
       <h2>כניסה</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -55,12 +57,12 @@ export default function LoginPage() {
           />
         </div>
 
-        <div style={{ marginTop: 10 }}>
+        <div>
           <button type="submit" disabled={loading}>
             {loading ? "Loggin in..." : "Login"}
           </button>
         </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p>{error}</p>}
       </form>
 
       <p>

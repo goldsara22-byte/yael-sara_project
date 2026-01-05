@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { getUserByUsername, postUser } from "../API/userAPI.js";
 
 const AuthContext = createContext(null);
 export const useAuth = () => useContext(AuthContext);
@@ -16,13 +17,10 @@ export function AuthProvider({ children }) {
 
     async function login(username, password) {
         // לפי ההוראות: username מהשרת, וסיסמה = website
-        const res = await fetch(`http://localhost:3000/users?username=${encodeURIComponent(username)}`, {
-            method: "GET",
-        });
-
-        const users = await res.json();
-        if (!res.ok) return { ok: false, msg: "שגיאת שרת" };
-
+        console.log("Attempting login for:", username);
+        const { ok, data: users, msg } = await getUserByUsername(username);
+        console.log("Login fetch result:", { ok, users, msg });
+        if (!ok) return { ok: false, msg };
         if (users.length === 0) return { ok: false, msg: "שם משתמש לא קיים" };
 
         const found = users[0];
@@ -30,10 +28,13 @@ export function AuthProvider({ children }) {
 
         setUser(found);
         localStorage.setItem(LS_KEY, JSON.stringify(found));
+
         return { ok: true };
     }
 
-    function setLoggedUser(user) {
+    function register(user) {
+
+        postUser(user);
         setUser(user);
         localStorage.setItem(LS_KEY, JSON.stringify(user));
     }
@@ -43,6 +44,6 @@ export function AuthProvider({ children }) {
         localStorage.removeItem(LS_KEY);
     }
 
-    const value = { user, login, logout, setLoggedUser };
+    const value = { user, login, logout, register };
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

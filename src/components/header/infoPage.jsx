@@ -1,4 +1,4 @@
-import { useAuth } from "../components/AuthContext";
+import { useAuth } from "../AuthContext";
 
 export default function InfoPage() {
   const { user } = useAuth();

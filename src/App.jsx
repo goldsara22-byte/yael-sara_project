@@ -1,16 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from './components/AuthContext.jsx'
-import HomePage from './pages/HomePage.jsx'
-import LoginPage from './pages/LoginPage.jsx'
-import RegisterPage from './pages/RegisterPage.jsx'
-import RegisterDetailsPage from './pages/RegisterDetailsPage.jsx'
+import HomePage from './components/pages/HomePage.jsx'
+import LoginPage from './components/pages/LoginPage.jsx' 
+import RegisterPage from './components/pages/RegisterPage.jsx'
+import RegisterDetailsPage from './components/pages/RegisterDetailsPage.jsx'
 import './App.css'
-import InfoPage from './pages/infoPage.jsx'
-import TodosPage from './pages/TodosPage.jsx'
-import PostsPage from './pages/PostsPage.jsx'
+import InfoPage from './components/header/InfoPage.jsx'
+import TodosPage from './components/pages/TodosPage.jsx'
+import PostsPage from './components/pages/PostsPage.jsx'
 
 function App() {
   return (
@@ -23,7 +20,6 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/register/details" element={<RegisterDetailsPage />} />
 
-
           <Route path="/home/*" element={<HomePage />}>
             <Route path="info" element={<InfoPage />} />
             <Route path="todos" element={<TodosPage />} />
@@ -34,10 +30,6 @@ function App() {
             {/* <Route path="albums/:albumId/photos" element={<AlbumPhotosPage />} /> */}
 
           </Route>
-
-
-
-
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </AuthProvider>

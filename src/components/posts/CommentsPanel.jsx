@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import DeleteButton from "./DeleteButton.jsx";
+import DeleteButton from "../shared/DeleteButton.jsx";
 
 const API = "http://localhost:3000";
 

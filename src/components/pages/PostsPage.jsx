@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { useAuth } from "../components/AuthContext";
-import SearchBar from "../components/SearchBar.jsx";
-import AddPostForm from "../components/AddPostForm.jsx";
-import DeleteButton from "../components/DeleteButton.jsx";
-import PostEditor from "../components/PostEditor.jsx";
-import CommentsPanel from "../components/CommentsPanel.jsx";
+import { useAuth } from "../AuthContext.jsx";
+import SearchBar from "../shared/SearchBar.jsx";
+import AddPostForm from "../posts/AddPostForm.jsx";
+import DeleteButton from "../shared/DeleteButton.jsx";
+import PostEditor from "../posts/PostEditor.jsx";
+import CommentsPanel from "../posts/CommentsPanel.jsx";
 
 const API = "http://localhost:3000";
 

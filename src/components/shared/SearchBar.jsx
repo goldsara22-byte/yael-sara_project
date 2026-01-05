@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 
 export default function SearchBar({
-  options,               // [{ value, label }]
-  placeholder = "חיפוש...",
-  defaultBy = "title",
   showStatus = false,    // ב-Todos: true, ב-Posts/Albums: false
-  defaultStatus = "all", // all | done | open
   onChange,              // (query) => void
 }) {
-  const [by, setBy] = useState(defaultBy);
+  const [by, setBy] = useState("title");
   const [text, setText] = useState("");
-  const [status, setStatus] = useState(defaultStatus);
+  const [status, setStatus] = useState("all");
 
+  const options=[
+            { value: "id", label: "id" },
+            { value: "title", label: "כותרת" },
+          ];
   // בכל שינוי - מודיעים להורה
   useEffect(() => {
     onChange?.({
@@ -35,7 +35,7 @@ export default function SearchBar({
       </label>
 
       <input
-        placeholder={placeholder}
+        placeholder={"חיפוש..."}
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
