@@ -17,6 +17,8 @@ async function deleteTodoById(id) {
 async function patchTodoComplite(todo) {
     const res = await patchGeneralAPI(`/todos/${todo.id}`, { completed: !todo.completed });
     if (!res.ok) throw new Error("patch failed");
+    const updated = await res.json();
+    return updated;
 }
 
 
@@ -28,11 +30,14 @@ async function patchTodoTitleById(id, newTitle) {
 }
 
 async function postTodoForUser(user, title) {
+
+    console.log("Posting new todo for user:", user, "with title:", title);
     const res = await postGeneralAPI(`/todos`, {
         userId: user.id,
         title: title,
         completed: false,
     });
+    console.log("Post response status:", res.status);
     if (!res.ok) throw new Error("post failed");
     const created = await res.json();
     return created;

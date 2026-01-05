@@ -1,5 +1,6 @@
 import { useState } from "react";
-
+// import { useAuth } from "../../components/AuthContext.jsx";
+// const { user } = useAuth();
 export default function AddItemBar({
   onAdd,
   minLen = 1,
@@ -16,6 +17,7 @@ export default function AddItemBar({
       await onAdd(text.trim());
       setText("");
     } catch (err) {
+      console.error("&&&&&&&&&&");
       onError();
     } finally {
       setLoading(false);

@@ -3,12 +3,7 @@ import { useEffect, useState } from "react";
 export default function EditButton({
   todoId,
   title,
-  disabled = false,
   onSave, // async (id, newTitle) => Promise<void>
-  requiredMessage = "חובה למלא כותרת",
-  editText = "✏️",
-  saveText = "שמור",
-  cancelText = "ביטול",
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [draft, setDraft] = useState(title ?? "");
@@ -25,7 +20,7 @@ export default function EditButton({
   const isDirty = trimmedDraft !== trimmedTitle;
 
   function startEdit() {
-    if (disabled || loading) return;
+    if (loading) return;
     setError("");
     setDraft(title ?? "");
     setIsEditing(true);
@@ -38,10 +33,10 @@ export default function EditButton({
   }
 
   async function handleSave() {
-    if (disabled || loading) return;
+    if (loading) return;
 
     if (!trimmedDraft) {
-      setError(requiredMessage);
+      setError("חובה למלא כותרת");
       return;
     }
 
@@ -66,8 +61,8 @@ export default function EditButton({
     return (
       <div className="todo-title-row">
         <div className="todo-title">{title}</div>
-        <button type="button" onClick={startEdit} disabled={disabled || loading} title="עריכה">
-          {editText}
+        <button type="button" onClick={startEdit} disabled={loading} title="עריכה">
+          {"✏️"}
         </button>
       </div>
     );
@@ -82,16 +77,16 @@ export default function EditButton({
             setDraft(e.target.value);
             if (error) setError("");
           }}
-          disabled={disabled || loading}
+          disabled={loading}
           placeholder="כותרת..."
         />
 
-        <button type="button" onClick={handleSave} disabled={disabled || loading}>
-          {loading ? "שומר..." : saveText}
+        <button type="button" onClick={handleSave} disabled={loading}>
+          {loading ? "שומר..." : "שמור"}
         </button>
 
-        <button type="button" onClick={cancelEdit} disabled={disabled || loading}>
-          {cancelText}
+        <button type="button" onClick={cancelEdit} disabled={loading}>
+          {"ביטול"}
         </button>
       </div>
 

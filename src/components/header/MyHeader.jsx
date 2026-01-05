@@ -18,8 +18,8 @@ export default function MyHeader() {
       </div>
 
       <nav style={{ marginLeft: 20 }}>
+        
         <NavLink to="/home" style={{ marginRight: 8 }}>Home</NavLink>
-        <NavLink to="/home/info" style={{ marginRight: 8 }}>Info</NavLink>
         <NavLink to="/home/todos" style={{ marginRight: 8 }}>Todos</NavLink>
         <NavLink to="/home/posts" style={{ marginRight: 8 }}>Posts</NavLink>
         <NavLink to="/home/albums" style={{ marginRight: 8 }}>Albums</NavLink>

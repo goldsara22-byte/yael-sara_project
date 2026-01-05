@@ -5,11 +5,13 @@ async function getGeneralAPI(path) {
 }
 
 async function postGeneralAPI(path, createData) {
+  console.log("Posting to:", `${LOCALHOST}${path}`, "with data:", createData);
   return await fetch(`${LOCALHOST}${path}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(createData),
   });
+  
 }
 
 async function deleteGeneralAPI(path) {

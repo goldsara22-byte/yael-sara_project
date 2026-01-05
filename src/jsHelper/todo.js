@@ -1,47 +1,4 @@
-  import { deleteTodoById, patchTodoComplite, patchTodoTitleById, postTodoForUser } from "../API/todoAPI.js";
-  async function handleDeletetodo(t) {
-    try {
-      await deleteTodoById(t.id);
-      setTodos(prev => prev.filter(td => String(td.id) !== String(t.id)));
-    } catch {
-      setErr("שגיאה במחיקת todo");
-      return;
-    }
-  }
 
-  async function toggleCompleted(todo) {
-    try {
-      const updated = await patchTodoComplite(todo);
-      setTodos((prev) =>
-        prev.map((t) => (String(t.id) === String(todo.id) ? updated : t))
-      );
-    } catch {
-      setErr("שגיאה בעדכון סטטוס todo");
-      return;
-    }
-  }
-  
-  async function updateTodoTitle(id, newTitle) {
-    try {
-      const updated = await patchTodoTitleById(id, newTitle);
-      setTodos((prev) =>
-        prev.map((t) => (String(t.id) === String(id) ? updated : t))
-      );
-    } catch {
-      setErr("שגיאה בעדכון כותרת todo");
-      return;
-    }
-  }
-
-  async function addTodo(title) {
-    try{
-    const created = await postTodoForUser(user, title);
-    setTodos((prev) => [created, ...prev]);
-    } catch {
-      setErr("שגיאה בהוספת todo");
-      return;
-    }
-  }
 
 function filtered(todos, query) {
 const q = (query.text || "").trim().toLowerCase();
@@ -69,4 +26,4 @@ function sorted(filteredTodos, sortBy) {
     return list;
 }
 
-  export { handleDeletetodo, toggleCompleted, updateTodoTitle, addTodo , filtered , sorted};
+  export { filtered , sorted};

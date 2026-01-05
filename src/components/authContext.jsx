@@ -17,26 +17,31 @@ export function AuthProvider({ children }) {
 
     async function login(username, password) {
         // לפי ההוראות: username מהשרת, וסיסמה = website
-        console.log("Attempting login for:", username);
         const { ok, data: users, msg } = await getUserByUsername(username);
-        console.log("Login fetch result:", { ok, users, msg });
         if (!ok) return { ok: false, msg };
         if (users.length === 0) return { ok: false, msg: "שם משתמש לא קיים" };
 
         const found = users[0];
         if (found.website !== password) return { ok: false, msg: "סיסמה שגויה" };
-
-        setUser(found);
-        localStorage.setItem(LS_KEY, JSON.stringify(found));
+        const myUser = { id: found.id, name: found.name, username: found.username };
+        setUser(myUser);
+        localStorage.setItem(LS_KEY, JSON.stringify(myUser));
 
         return { ok: true };
     }
 
-    function register(user) {
+    async function register(userA) {
+        try {
+            const { ok, data: created, msg } = await postUser(userA);
+            if (!ok) return { ok: false, msg };
 
-        postUser(user);
-        setUser(user);
-        localStorage.setItem(LS_KEY, JSON.stringify(user));
+            const myUser = { id: created.id, name: created.name, username: created.username };
+            setUser(myUser);
+            localStorage.setItem(LS_KEY, JSON.stringify(myUser));
+            return { ok: true };
+        } catch (err) {
+            return { ok: false, msg: "שגיאת רשת" };
+        }
     }
 
     function logout() {
