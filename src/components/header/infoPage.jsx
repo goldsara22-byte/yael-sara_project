@@ -1,10 +1,17 @@
-import { useAuth } from "../AuthContext";
+import { useAuth, useState } from "../AuthContext";
 import { getInfoByUserId } from "../../API/infoAPI.js";
 export default function InfoPage() {
+  const [err, setErr] = useState("");
   const { user } = useAuth();
   if (!user) return null;
   async function handleClick() {
-      }  return (
+    try{
+    const infoUser= await getInfoByUserId(user.id);
+      } catch (e) {
+      setErr(e);
+    })
+    {}
+    return (
   <button onClick={handleClick}>Info</button>
   );
 }
