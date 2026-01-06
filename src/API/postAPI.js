@@ -7,4 +7,5 @@ async function getPostsByUser(user) {
     return mine;
 }
 
-export {getPostsByUser}
+export {getPostsByUser,deletePostById, patchPostComplite, patchPostTitleById}
+
