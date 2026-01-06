@@ -141,6 +141,7 @@ export default function PostsPage() {
               </div>
 
               <PostEditor
+                
                 post={selectedPost}
                 disabled={String(savingId) === String(selectedPost.id)}
                 onSave={(id, data) => updatePost(id, data)}
