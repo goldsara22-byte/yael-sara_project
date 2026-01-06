@@ -6,7 +6,6 @@ import DeleteButton from "../shared/DeleteButton.jsx";
 import PostEditor from "../posts/PostEditor.jsx";
 import CommentsPanel from "../posts/CommentsPanel.jsx";
 
-const API = "http://localhost:3000";
 
 export default function PostsPage() {
   const { user } = useAuth();
@@ -64,53 +63,8 @@ export default function PostsPage() {
     return posts.find((p) => String(p.id) === String(selectedPostId)) || null;
   }, [posts, selectedPostId]);
 
-  async function addPost({ title, body }) {
-    const res = await fetch(`${API}/posts`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userId: user.id,
-        title,
-        body,
-      }),
-    });
 
-    if (!res.ok) throw new Error("post failed");
-    const created = await res.json();
-    setPosts((prev) => [created, ...prev]);
-    setSelectedPostId(created.id);
-    setShowComments(false);
-  }
 
-  async function deletePost(id) {
-    const res = await fetch(`${API}/posts/${id}`, { method: "DELETE" });
-    if (!res.ok) throw new Error("delete failed");
-
-    setPosts((prev) => prev.filter((p) => String(p.id) !== String(id)));
-    if (String(selectedPostId) === String(id)) {
-      setSelectedPostId(null);
-      setShowComments(false);
-    }
-  }
-
-  async function updatePost(id, patch) {
-    try {
-      setSavingId(id);
-
-      const res = await fetch(`${API}/posts/${id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(patch),
-      });
-
-      if (!res.ok) throw new Error("patch failed");
-      const updated = await res.json();
-
-      setPosts((prev) => prev.map((p) => (String(p.id) === String(id) ? updated : p)));
-    } finally {
-      setSavingId(null);
-    }
-  }
 
   function selectPost(id) {
     setSelectedPostId(id);
@@ -127,12 +81,6 @@ export default function PostsPage() {
 
       <div className="posts-controls">
         <SearchBar
-          options={[
-            { value: "id", label: "id" },
-            { value: "title", label: "כותרת" },
-          ]}
-          placeholder="חיפוש פוסטים..."
-          defaultBy="title"
           showStatus={false}
           onChange={setQuery}
         />
