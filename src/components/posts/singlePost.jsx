@@ -1,6 +1,6 @@
 import EditButton from "../shared/EditButton.jsx";
 import DeleteButton from "../shared/DeleteButton.jsx";
-import { deletePostById, patchPostComplite, patchPostTitleById } from "../../API/postAPI.js";
+import { deletePostById, patchPostTitleById } from "../../API/postAPI.js";
 
 export default function SinglePost({ post,setPosts, onError }) {
     async function handleDeletePost(p) {
@@ -9,18 +9,6 @@ export default function SinglePost({ post,setPosts, onError }) {
       setPosts(prev => prev.filter(pd => String(pd.id) !== String(p.id)));
     } catch {
       setErr("שגיאה במחיקת post");
-      return;
-    }
-  }
-
-  async function toggleCompleted(p) {
-    try {
-      const updated = await patchPostComplite(p);
-      setPosts((prev) =>
-        prev.map((po) => (String(po.id) === String(p.id) ? updated : po))
-      );
-    } catch {
-      setErr("שגיאה בעדכון סטטוס post");
       return;
     }
   }
@@ -51,14 +39,6 @@ export default function SinglePost({ post,setPosts, onError }) {
       >
         ❌
       </DeleteButton>
-      <label className="post-done">
-        done
-        <input
-          type="checkbox"
-          checked={!!post.completed}
-          onChange={() => toggleCompleted(post)}
-        />
-      </label>
     </div>
   );
 }
