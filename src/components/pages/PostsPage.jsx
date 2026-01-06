@@ -50,7 +50,7 @@ export default function PostsPage() {
   }, [user]);
 
   const filteredPosts = useMemo(() => {
-filtered(posts);
+     filtered(posts,query);
   }, [posts, query]);
 
   const selectedPost = useMemo(() => {
