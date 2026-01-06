@@ -5,7 +5,7 @@ import LoginPage from './components/pages/LoginPage.jsx'
 import RegisterPage from './components/pages/RegisterPage.jsx'
 import RegisterDetailsPage from './components/pages/RegisterDetailsPage.jsx'
 import './App.css'
-import InfoPage from './components/header/InfoPage.jsx'
+import InfoPage from './components/header/info.jsx'
 import TodosPage from './components/pages/TodosPage.jsx'
 import PostsPage from './components/pages/PostsPage.jsx'
 

@@ -2,8 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "../AuthContext.jsx";
 import SearchBar from "../shared/SearchBar.jsx";
 import DeleteButton from "../shared/DeleteButton.jsx";
-import PostEditor from "../posts/PostEditor.jsx";
-import CommentsPanel from "../posts/CommentsPanel.jsx";
  import { postPostForUser } from "../../API/postAPI.js";
 import { filtered } from "../../jsHelper/post.js";
 
