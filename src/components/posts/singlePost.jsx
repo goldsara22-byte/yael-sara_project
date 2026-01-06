@@ -2,61 +2,61 @@ import EditButton from "../shared/EditButton.jsx";
 import DeleteButton from "../shared/DeleteButton.jsx";
 import { deletePostById, patchPostComplite, patchPostTitleById } from "../../API/postAPI.js";
 
-export default function SingleTodo({ todo,setTodos, onError }) {
-    async function handleDeletetodo(t) {
+export default function SinglePost({ post,setPosts, onError }) {
+    async function handleDeletePost(p) {
     try {
-      await deleteTodoById(t.id);
-      setTodos(prev => prev.filter(td => String(td.id) !== String(t.id)));
+      await deletePostById(p.id);
+      setPosts(prev => prev.filter(pd => String(pd.id) !== String(p.id)));
     } catch {
-      setErr("שגיאה במחיקת todo");
+      setErr("שגיאה במחיקת post");
       return;
     }
   }
 
-  async function toggleCompleted(todo) {
+  async function toggleCompleted(p) {
     try {
-      const updated = await patchTodoComplite(todo);
-      setTodos((prev) =>
-        prev.map((t) => (String(t.id) === String(todo.id) ? updated : t))
+      const updated = await patchPostComplite(p);
+      setPosts((prev) =>
+        prev.map((po) => (String(po.id) === String(p.id) ? updated : po))
       );
     } catch {
-      setErr("שגיאה בעדכון סטטוס todo");
+      setErr("שגיאה בעדכון סטטוס post");
       return;
     }
   }
   
-  async function updateTodoTitle(id, newTitle) {
+  async function updatePostTitle(id, newTitle) {
     try {
-      const updated = await patchTodoTitleById(id, newTitle);
-      setTodos((prev) =>
-        prev.map((t) => (String(t.id) === String(id) ? updated : t))
+      const updated = await patchPostTitleById(id, newTitle);
+      setPosts((prev) =>
+        prev.map((p) => (String(p.id) === String(id) ? updated : p))
       );
     } catch {
-      setErr("שגיאה בעדכון כותרת todo");
+      setErr("שגיאה בעדכון כותרת post");
       return;
     }
   }
 
   return (
-    <div className="todo-item">
-      <div className="todo-id">#{todo.id}</div>
+    <div className="post-item">
+      <div className="post-id">#{post.id}</div>
       <EditButton
-        todoId={todo.id}
-        title={todo.title}
-        onSave={updateTodoTitle}
+        todoId={post.id}
+        title={post.title}
+        onSave={updatePostTitle}
       />
       <DeleteButton
-        onDelete={() => handleDeletetodo(todo)}
-        onError={() => onError("שגיאה במחיקת todo")}
+        onDelete={() => handleDeletePost(post)}
+        onError={() => onError("שגיאה במחיקת post")}
       >
         ❌
       </DeleteButton>
-      <label className="todo-done">
+      <label className="post-done">
         done
         <input
           type="checkbox"
-          checked={!!todo.completed}
-          onChange={() => toggleCompleted(todo)}
+          checked={!!post.completed}
+          onChange={() => toggleCompleted(post)}
         />
       </label>
     </div>
