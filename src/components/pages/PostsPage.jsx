@@ -6,6 +6,7 @@ import DeleteButton from "../shared/DeleteButton.jsx";
 import PostEditor from "../posts/PostEditor.jsx";
 import CommentsPanel from "../posts/CommentsPanel.jsx";
 import { getPostsByUser } from "../../API/postAPI.js";
+import {  filtered } from "../../jsHelper/post.js";
 
 export default function PostsPage() {
   const { user } = useAuth();
