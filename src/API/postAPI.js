@@ -1,6 +1,10 @@
-async function getTodosByUser(user) {
-    const res = await getGeneralAPI(`/todos?userId=${encodeURIComponent(user.id)}`);
+import { getGeneralAPI, deleteGeneralAPI, patchGeneralAPI, postGeneralAPI } from "./general.js";
+
+async function getPostsByUser(user) {
+    const res = await getGeneralAPI(`/posts?userId=${encodeURIComponent(user.id)}`);
     if (!res.ok) throw new Error("fetch failed");
     const mine = await res.json();
     return mine;
 }
+
+export {getPostsByUser}
