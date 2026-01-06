@@ -1,34 +1,34 @@
 import { useEffect, useState } from "react";
 
 export default function EditButton({
-  todoId,
-  title,
-  onSave, // async (id, newTitle) => Promise<void>
+  itemId,
+  data,
+  onSave, // async (id, newData) => Promise<void>
 }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [draft, setDraft] = useState(title ?? "");
+  const [draft, setDraft] = useState(data ?? "");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   // כשכותרת מתעדכנת מההורה — ניישר טיוטה רק אם לא באמצע עריכה
   useEffect(() => {
-    if (!isEditing) setDraft(title ?? "");
-  }, [title, isEditing]);
+    if (!isEditing) setDraft(data ?? "");
+  }, [data, isEditing]);
 
   const trimmedDraft = String(draft ?? "").trim();
-  const trimmedTitle = String(title ?? "").trim();
-  const isDirty = trimmedDraft !== trimmedTitle;
+  const trimmedData = String(data ?? "").trim();
+  const isDirty = trimmedDraft !== trimmedData;
 
   function startEdit() {
     if (loading) return;
     setError("");
-    setDraft(title ?? "");
+    setDraft(data ?? "");
     setIsEditing(true);
   }
 
   function cancelEdit() {
     setError("");
-    setDraft(title ?? "");
+    setDraft(data ?? "");
     setIsEditing(false);
   }
 
@@ -48,7 +48,7 @@ export default function EditButton({
     try {
       setLoading(true);
       setError("");
-      await onSave(todoId, trimmedDraft);
+      await onSave(itemId, trimmedDraft);
       setIsEditing(false);
     } catch {
       setError("שגיאה בשמירה");
@@ -59,8 +59,8 @@ export default function EditButton({
 
   if (!isEditing) {
     return (
-      <div className="todo-title-row">
-        <div className="todo-title">{title}</div>
+      <div className="item-data-row">
+        <div className="item-data">{data}</div>
         <button type="button" onClick={startEdit} disabled={loading} title="עריכה">
           {"✏️"}
         </button>
@@ -69,8 +69,8 @@ export default function EditButton({
   }
 
   return (
-    <div className="todo-title-editor">
-      <div className="todo-title-editor-row">
+    <div className="item-data-editor">
+      <div className="item-data-editor-row">
         <input
           value={draft}
           onChange={(e) => {
@@ -90,7 +90,7 @@ export default function EditButton({
         </button>
       </div>
 
-      {error && <div className="todo-error">{error}</div>}
+      {error && <div className="item-error">{error}</div>}
     </div>
   );
 }

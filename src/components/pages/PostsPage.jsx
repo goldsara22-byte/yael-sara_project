@@ -1,12 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "../AuthContext.jsx";
 import SearchBar from "../shared/SearchBar.jsx";
-import AddPostForm from "../posts/AddPostForm.jsx";
 import DeleteButton from "../shared/DeleteButton.jsx";
 import PostEditor from "../posts/PostEditor.jsx";
 import CommentsPanel from "../posts/CommentsPanel.jsx";
-import { getPostsByUser } from "../../API/postAPI.js";
-import {  filtered } from "../../jsHelper/post.js";
+ import { postPostForUser } from "../../API/postAPI.js";
+import { filtered } from "../../jsHelper/post.js";
 
 export default function PostsPage() {
   const { user } = useAuth();
@@ -24,41 +23,24 @@ export default function PostsPage() {
   // פתיחה/סגירה של תגובות לפוסט שנבחר
   const [showComments, setShowComments] = useState(false);
 
-  useEffect(() => {
-    if (!user) return;
 
-    (async () => {
-      try {
-        setLoading(true);
-        setErr("");
-
-        // עדיף להביא רק של המשתמש
-        const res = await fetch(`${API}/posts?userId=${encodeURIComponent(user.id)}`);
-        if (!res.ok) throw new Error("fetch failed");
-        const mine = await res.json();
-
-        setPosts(mine);
-
-        // אם אין בחירה עדיין - נבחר ראשון (אופציונלי)
-        if (mine.length > 0) setSelectedPostId((prev) => prev ?? mine[0].id);
-      } catch {
-        setErr("שגיאה בטעינת posts");
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, [user]);
+  async function addPost(title, body) {
+    try {
+      const created = await postPostForUser(user, title, body);
+      setTodos((prev) => [created, ...prev]);
+    } catch (err) {
+      setErr("שגיאה בהוספת todo");
+      return;
+    }
+  }
 
   const filteredPosts = useMemo(() => {
-     filtered(posts,query);
+    filtered(posts, query);
   }, [posts, query]);
 
   const selectedPost = useMemo(() => {
     return posts.find((p) => String(p.id) === String(selectedPostId)) || null;
   }, [posts, selectedPostId]);
-
-
-
 
   function selectPost(id) {
     setSelectedPostId(id);
@@ -79,7 +61,12 @@ export default function PostsPage() {
           onChange={setQuery}
         />
 
-        <AddPostForm onAdd={addPost} />
+        <AddItemBar
+          onAdd={addPost}
+          onError={() => setErr("שגיאה בהוספת todo")}
+          user={user}
+        />
+
       </div>
 
       <div className="posts-grid">
@@ -141,7 +128,7 @@ export default function PostsPage() {
               </div>
 
               <PostEditor
-                
+
                 post={selectedPost}
                 disabled={String(savingId) === String(selectedPost.id)}
                 onSave={(id, data) => updatePost(id, data)}

@@ -41,8 +41,8 @@ export default function SingleTodo({ todo,setTodos, onError }) {
     <div className="todo-item">
       <div className="todo-id">#{todo.id}</div>
       <EditButton
-        todoId={todo.id}
-        title={todo.title}
+        itemId={todo.id}
+        data={todo.title}
         onSave={updateTodoTitle}
       />
       <DeleteButton

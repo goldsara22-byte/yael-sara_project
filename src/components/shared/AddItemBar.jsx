@@ -4,9 +4,11 @@ import { useState } from "react";
 export default function AddItemBar({
   onAdd,
   minLen = 1,
-  onError,               // optional (err) => void
+  onError,
+  addBody,              // optional (err) => void
 }) {
-  const [text, setText] = useState("");
+  const [textTitle, setTextTitle] = useState("");
+  const [textBody, setTextBody] = useState("");
   const [loading, setLoading] = useState(false);
   const canSubmit = text.trim().length >= minLen && !loading;
 
@@ -14,10 +16,15 @@ export default function AddItemBar({
     if (!canSubmit) return;
     try {
       setLoading(true);
-      await onAdd(text.trim());
-      setText("");
+      if (addBody) {
+        await onAdd(textTitle.trim(), textBody.trim());
+        setTextTitle("");
+        setTextBody("");
+      } else {
+        await onAdd(textTitle.trim());
+        setTextTitle("");
+      }
     } catch (err) {
-      console.error("&&&&&&&&&&");
       onError();
     } finally {
       setLoading(false);
@@ -33,15 +40,22 @@ export default function AddItemBar({
 
   return (
     <div
-      style={{ display: "flex", gap: 8, alignItems: "center"}}
+      style={{ display: "flex", gap: 8, alignItems: "center" }}
     >
       <input
-        value={text}
-        onChange={(e) => setText(e.target.value)}
+        value={textTitle}
+        onChange={(e) => setTextTitle(e.target.value)}
         onKeyDown={onKeyDown}
-        placeholder={"הוסיפי todo חדש..."}
+        placeholder={"הוסיפי חדש..."}
         disabled={loading}
       />
+      {addBody && <input
+        value={textBody}
+        onChange={(e) => setTextBody(e.target.value)}
+        onKeyDown={onKeyDown}
+        placeholder={"הוסיפי חדש..."}
+        disabled={loading}
+      />}
 
       <button type="button" onClick={submit} disabled={!canSubmit}>
         {loading ? "מוסיף..." : "הוסף"}
