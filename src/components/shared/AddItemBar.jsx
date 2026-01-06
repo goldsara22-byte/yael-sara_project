@@ -3,14 +3,14 @@ import { useState } from "react";
 // const { user } = useAuth();
 export default function AddItemBar({
   onAdd,
-  minLen = 1,
   onError,
   addBody,              // optional (err) => void
 }) {
   const [textTitle, setTextTitle] = useState("");
   const [textBody, setTextBody] = useState("");
   const [loading, setLoading] = useState(false);
-  const canSubmit = text.trim().length >= minLen && !loading;
+  const minLen = 1;
+  const canSubmit = textTitle.trim().length >= minLen && !loading;
 
   async function submit() {
     if (!canSubmit) return;

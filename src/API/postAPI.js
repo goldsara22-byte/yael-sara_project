@@ -1,10 +1,10 @@
 import { getGeneralAPI, deleteGeneralAPI, patchGeneralAPI, postGeneralAPI } from "./general.js";
 
-async function getPostsByUser(user) {
-    const res = await getGeneralAPI(`/posts?userId=${encodeURIComponent(user.id)}`);
+async function getPosts() {
+    const res = await getGeneralAPI(`/posts`);
     if (!res.ok) throw new Error("fetch failed");
-    const mine = await res.json();
-    return mine;
+    const posts = await res.json();
+    return posts;
 }
 
 async function deletePostById(id) {
@@ -36,4 +36,4 @@ async function postPostForUser(user, title, body) {
     const created = await res.json();
     return created;
 }
-export {getPostsByUser,deletePostById, patchPostTitleById, patchPostBodyById,postPostForUser}
+export {getPosts,deletePostById, patchPostTitleById, patchPostBodyById,postPostForUser}

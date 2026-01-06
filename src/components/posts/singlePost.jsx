@@ -1,3 +1,4 @@
+import { useState } from "react";
 import EditButton from "../shared/EditButton.jsx";
 import DeleteButton from "../shared/DeleteButton.jsx";
 import { deletePostById, patchPostTitleById,patchPostBodyById } from "../../API/postAPI.js";
