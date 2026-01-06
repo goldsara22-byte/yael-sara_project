@@ -9,3 +9,4 @@ function filtered(posts, query) {
       return true;
     });
 }
+export { filtered , sorted};
