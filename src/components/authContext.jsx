@@ -7,16 +7,13 @@ export const useAuth = () => useContext(AuthContext);
 const LS_KEY = "activeUser";
 
 export function AuthProvider({ children }) {
-    const [user, setUser] = useState(null);
-
-    // טעינה מה-LocalStorage ברענון (הרחבה ז׳)
-    useEffect(() => {
+    
+    const [user, setUser] = useState(() => {
         const raw = localStorage.getItem(LS_KEY);
-        if (raw) setUser(JSON.parse(raw));
-    }, []);
+        return raw ? JSON.parse(raw) : null;
+    });
 
     async function login(username, password) {
-        // לפי ההוראות: username מהשרת, וסיסמה = website
         const { ok, data: users, msg } = await getUserByUsername(username);
         if (!ok) return { ok: false, msg };
         if (users.length === 0) return { ok: false, msg: "שם משתמש לא קיים" };
