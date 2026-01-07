@@ -37,9 +37,9 @@ export default function PostsPage() {
   async function addPost(title, body) {
     try {
       const created = await postPostForUser(user, title, body);
-      setTodos((prev) => [created, ...prev]);
+      setPosts((prev) => [created, ...prev]);
     } catch (err) {
-      setErr("שגיאה בהוספת todo");
+      setErr("שגיאה בהוספת post");
       return;
     }
   }
@@ -72,7 +72,7 @@ export default function PostsPage() {
         <AddItemBar
           onAdd={addPost}
           onError={() => setErr("שגיאה בהוספת todo")}
-          user={user}
+          addBody={true}
         />
       </div>
       <div className="posts-list">
@@ -82,7 +82,7 @@ export default function PostsPage() {
                   post={p}
                   setPosts={setPosts}
                   onError={setErr}
-      
+                  user={user}
                 />
               ))}
 

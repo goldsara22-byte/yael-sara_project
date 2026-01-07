@@ -68,7 +68,7 @@ async function addTodo(title) {
         <AddItemBar
           onAdd={addTodo}
           onError={() => setErr("שגיאה בהוספת todo")}
-          user={user}
+          addBody={false}
         />
       </div>
 

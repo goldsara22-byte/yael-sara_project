@@ -8,6 +8,8 @@ import './App.css'
 import InfoPage from './components/header/info.jsx'
 import TodosPage from './components/pages/TodosPage.jsx'
 import PostsPage from './components/pages/PostsPage.jsx'
+import AlbumsPage from './components/pages/AlbumsPage.jsx'
+import AlbumPhotosPage from './components/pages/AlbumPhotosPage.jsx'
 
 function App() {
   return (
@@ -21,15 +23,12 @@ function App() {
           <Route path="/register/details" element={<RegisterDetailsPage />} />
 
           <Route path="/home/*" element={<HomePage />}>
-            <Route path="info" element={<InfoPage />} />
             <Route path="todos" element={<TodosPage />} />
             <Route path="posts" element={<PostsPage />} />
-            {/* <Route path="todos" element={<TodosPage />} />
-            <Route path="posts" element={<PostsPage />} />
-            <Route path="albums" element={<AlbumsPage />} /> */}
-            {/* <Route path="albums/:albumId/photos" element={<AlbumPhotosPage />} /> */}
-
+            <Route path="albums" element={<AlbumsPage />} />
+            <Route path="albums/:albumId" element={<AlbumPhotosPage />} />
           </Route>
+
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </AuthProvider>

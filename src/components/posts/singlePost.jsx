@@ -1,17 +1,19 @@
 import { useState } from "react";
 import EditButton from "../shared/EditButton.jsx";
 import DeleteButton from "../shared/DeleteButton.jsx";
+import Comments from "./Comments.jsx";
 import { deletePostById, patchPostTitleById,patchPostBodyById } from "../../API/postAPI.js";
 
-export default function SinglePost({ post, setPosts, onError }) {
+export default function SinglePost({ post, setPosts, onError, user }) {
   const [showContents, setShowContents] = useState(false);
+  const isOwner = user && String(user.id) === String(post.userId);
 
   async function handleDeletePost(p) {
     try {
       await deletePostById(p.id);
       setPosts(prev => prev.filter(pd => String(pd.id) !== String(p.id)));
     } catch {
-      setErr("שגיאה במחיקת post");
+      onError("שגיאה במחיקת post");
       return;
     }
   }
@@ -23,7 +25,7 @@ export default function SinglePost({ post, setPosts, onError }) {
         prev.map((p) => (String(p.id) === String(id) ? updated : p))
       );
     } catch {
-      setErr("שגיאה בעדכון תוכן post");
+      onError("שגיאה בעדכון תוכן post");
       return;
     }
   }
@@ -35,32 +37,33 @@ export default function SinglePost({ post, setPosts, onError }) {
         prev.map((p) => (String(p.id) === String(id) ? updated : p))
       );
     } catch {
-      setErr("שגיאה בעדכון כותרת post");
+      onError("שגיאה בעדכון כותרת post");
       return;
     }
   }
-
+//והצגתו באופן מודגש
   return (
     <div className="post-item">
       <div className="post-id">#{post.id}</div>
-      <EditButton
+      {isOwner ? <EditButton
         itemId={post.id}
         data={post.title}
         onSave={updatePostTitle}
-      />
+      /> : <div className="post-title">{post.title}</div>}
       <button onClick={() => setShowContents((prev) => !prev)}>
         {showContents ? "הסתר תוכן" : "הצג תוכן"}
       </button>
-      {showContents && <EditButton className="post-body"
+      {showContents && (isOwner ? <EditButton className="post-body"
         itemId={post.id}
         data={post.body}
-        onSave={updatePostBody}></EditButton>}
-      <DeleteButton
+        onSave={updatePostBody}></EditButton> : <div className="post-body">{post.body}</div>)}
+      {isOwner && <DeleteButton
         onDelete={() => handleDeletePost(post)}
         onError={() => onError("שגיאה במחיקת post")}
       >
         ❌
-      </DeleteButton>
+      </DeleteButton>}
+      <Comments postId={post.id} user={user} onError={onError} />
     </div>
   );
 }

@@ -46,14 +46,14 @@ export default function AddItemBar({
         value={textTitle}
         onChange={(e) => setTextTitle(e.target.value)}
         onKeyDown={onKeyDown}
-        placeholder={"הוסיפי חדש..."}
+        placeholder={"הוסיפי כותרת חדשה..."}
         disabled={loading}
       />
       {addBody && <input
         value={textBody}
         onChange={(e) => setTextBody(e.target.value)}
         onKeyDown={onKeyDown}
-        placeholder={"הוסיפי חדש..."}
+        placeholder={"הוסיפי גוף חדש..."}
         disabled={loading}
       />}
 

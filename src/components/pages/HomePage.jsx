@@ -4,7 +4,7 @@ import MyHeader from '../header/MyHeader.jsx';
 
 export default function HomeLayout() {
     const { user } = useAuth();
-    if (!user) return <Navigate to="/login" replace />;
+    if (!user) return <Navigate to="/login" replace />;// אם יש משתמש מחובר שישר יגיע לפה
 
     return (
         <div>

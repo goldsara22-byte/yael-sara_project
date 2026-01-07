@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../AuthContext.jsx";
 import { getInfoByUserId } from "../../API/infoAPI.js";
 
-export default function InfoPage() {
+export default function InfoPage() {// לשנות את הסטייל כך ששאר העמוד יהיה חסום
   const [err, setErr] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [userData, setUserData] = useState(null);
@@ -32,7 +32,6 @@ export default function InfoPage() {
             <p><strong>Username:</strong> {userData.username}</p>
             <p><strong>Email:</strong> {userData.email}</p>
             <p><strong>Phone:</strong> {userData.phone}</p>
-            <p><strong>Website:</strong> {userData.website && <a href={`http://${userData.website}`} target="_blank" rel="noreferrer">{userData.website}</a>}</p>
           </div>
 
           {/* Address Information */}
