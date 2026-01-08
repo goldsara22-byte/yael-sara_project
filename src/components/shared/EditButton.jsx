@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export default function EditButton({
   itemId,
   data,
-  onSave, // async (id, newData) => Promise<void>
+  onSave, 
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [draft, setDraft] = useState(data ?? "");

@@ -79,7 +79,6 @@ async function addTodo(title) {
             todo={t}
             setTodos={setTodos}
             onError={setErr}
-
           />
         ))}
 

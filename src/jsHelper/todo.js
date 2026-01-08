@@ -1,13 +1,11 @@
-
-
 function filtered(todos, query) {
 const q = (query.text || "").trim().toLowerCase();
     const st = query.status ?? "all";
     return todos.filter((t) => {      // 1) status filter
       if (st === "done" && !t.completed) return false;
       if (st === "open" && t.completed) return false;
-      // 2) text search
-      if (!q) return true;
+
+      if (!q) return true;// 2) text search
       if (query.by === "id") return String(t.id).includes(q);
       if (query.by === "title") return (t.title || "").toLowerCase().includes(q);
 
@@ -15,10 +13,8 @@ const q = (query.text || "").trim().toLowerCase();
     });
 }  
 
-
 function sorted(filteredTodos, sortBy) {
-    const list = [...filteredTodos];
-    list.sort((a, b) => {
+    filteredTodos.sort((a, b) => {
       // if (sortBy === "id") return (Number(a.id) || 0) - (Number(b.id) || 0);
         if (sortBy === "id")
       return String(a.id).localeCompare(String(b.id), undefined, {
@@ -29,7 +25,7 @@ function sorted(filteredTodos, sortBy) {
       if (sortBy === "completed") return Number(!!a.completed) - Number(!!b.completed);
       return 0;
     });
-    return list;
+    return filteredTodos;
 }
 
-  export { filtered , sorted};
+export { filtered , sorted};
