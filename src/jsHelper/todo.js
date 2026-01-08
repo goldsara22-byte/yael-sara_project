@@ -19,7 +19,12 @@ const q = (query.text || "").trim().toLowerCase();
 function sorted(filteredTodos, sortBy) {
     const list = [...filteredTodos];
     list.sort((a, b) => {
-      if (sortBy === "id") return (Number(a.id) || 0) - (Number(b.id) || 0);
+      // if (sortBy === "id") return (Number(a.id) || 0) - (Number(b.id) || 0);
+        if (sortBy === "id")
+      return String(a.id).localeCompare(String(b.id), undefined, {
+        numeric: true,
+        sensitivity: "base",
+      });
       if (sortBy === "title") return (a.title || "").localeCompare(b.title || "");
       if (sortBy === "completed") return Number(!!a.completed) - Number(!!b.completed);
       return 0;
