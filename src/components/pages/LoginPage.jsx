@@ -1,6 +1,7 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext.jsx";
+import '../../css/AuthPages.css';
 
 export default function LoginPage() {
   const { login } = useAuth();
@@ -35,39 +36,42 @@ export default function LoginPage() {
 
   return (
     <div >
-      <h2>כניסה</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
+      <div className="auth-container">
+        <div className="auth-card"></div>
+        <h2>כניסה</h2>
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div>
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
 
-        <div>
-          <input
-            type="password"
-            placeholder="Password (website field)"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Password (website field)"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
 
-        <div>
-          <button type="submit" disabled={loading}>
-            {loading ? "Loggin in..." : "Login"}
-          </button>
-        </div>
-        {error && <p>{error}</p>}
-      </form>
+          <div>
+            <button type="submit" disabled={loading}>
+              {loading ? "Loggin in..." : "Login"}
+            </button>
+          </div>
+          {error && <p>{error}</p>}
+        </form>
 
-      <p>
-        אין לך משתמש? <Link to="/register">הרשמה</Link>
-      </p>
+        <p>
+          אין לך משתמש? <Link to="/register">הרשמה</Link>
+        </p>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../AuthContext.jsx";
+import '../../css/AuthPages.css';
 
 
 export default function RegisterDetailsPage() {
@@ -79,6 +80,8 @@ export default function RegisterDetailsPage() {
 
     return (
         <div>
+            <div className="auth-container">
+        <div className="auth-card wide"></div>
             <h2>Complete Profile</h2>
 
             <form onSubmit={handleSubmit}>
@@ -106,6 +109,7 @@ export default function RegisterDetailsPage() {
                 <button disabled={loading} type="submit">{loading ? "שומר..." : "סיום הרשמה"}</button>
                 {error && <p>{error}</p>}
             </form>
+        </div>
         </div>
     );
 }

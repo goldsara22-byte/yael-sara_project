@@ -2,6 +2,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext.jsx";
 import InfoPage from "./info.jsx";
+import '../../css/MyHeader.css';
 
 export default function MyHeader() {
   const { user, logout } = useAuth();
@@ -18,7 +19,7 @@ export default function MyHeader() {
         {user ? `Welcome, ${user.name}` : "App"}
       </div>
 
-      <nav style={{ marginLeft: 20 }}>
+      <nav className="main-nav">
         
         <NavLink to="/home" style={{ marginRight: 8 }}>Home</NavLink>
         <NavLink to="/home/todos" style={{ marginRight: 8 }}>Todos</NavLink>
@@ -26,9 +27,9 @@ export default function MyHeader() {
         <NavLink to="/home/albums" style={{ marginRight: 8 }}>Albums</NavLink>
       </nav>
 
-      <div>
+      <div className="header-right-side">
         <InfoPage />
-        <button onClick={onLogout}>Logout</button>
+        <button onClick={onLogout} className="logout-btn">Logout</button>
       </div>
     </div>
   );

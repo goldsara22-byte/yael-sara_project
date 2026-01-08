@@ -5,6 +5,7 @@ import AddItemBar from "../shared/AddItemBar.jsx";
 import SinglePhoto from "../albums/SinglePhoto.jsx";
 import { getPhotosByAlbum, postPhotoForAlbum } from "../../API/photosAPI.js";
 import { getGeneralAPI } from "../../API/general.js";
+import '../../css/AlbumsPage.css';
 
 const LIMIT = 1;
 
@@ -24,7 +25,7 @@ export default function AlbumPhotosPage() {
     try {
       setLoadingMore(true);
       const data = await getPhotosByAlbum(albumId, start, LIMIT);
-      setPhotos((prev) => [...prev, ...data]);
+      setPhotos(prev => (start === 0 ? data : [...prev, ...data])); 
       setCurrentStart(start + data.length);
       if (data.length < LIMIT) {
         setHasMore(false);

@@ -1,6 +1,7 @@
 import {  Outlet, Navigate } from "react-router-dom";
 import { useAuth } from '../AuthContext.jsx';
 import MyHeader from '../header/MyHeader.jsx';
+import '../../css/HomePage.css';
 
 export default function HomeLayout() {
     const { user } = useAuth();

@@ -1,11 +1,11 @@
 import {  useEffect, useMemo, useState } from "react";
 import { useAuth } from "../AuthContext.jsx";
 import SearchBar from "../shared/SearchBar.jsx";
-import DeleteButton from "../shared/DeleteButton.jsx";
 import { getPosts, postPostForUser } from "../../API/postAPI.js";
 import { filtered } from "../../jsHelper/post.js";
 import AddItemBar from "../shared/AddItemBar.jsx";
 import SinglePost from "../posts/singlePost.jsx";
+import '../../css/PostsPage.css';
 
 export default function PostsPage() {
   const { user } = useAuth();

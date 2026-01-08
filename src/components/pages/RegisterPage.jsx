@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import '../../css/AuthPages.css';
 
 export default function RegisterPage() {
     const [form, setForm] = useState({ username: "", password: "", verify: "" });
@@ -52,21 +53,24 @@ export default function RegisterPage() {
 
     return (
         <div>
-            <h2>Register</h2>
+            <div className="auth-container"> {/* להוסיף את הקלאס הזה */}
+                <div className="auth-card"></div>
+                <h2>Register</h2>
 
-            <form onSubmit={handleSubmit}>
-                <input name="username" value={form.username} onChange={onChange} placeholder="Username" />
-                <input name="password" type="password" value={form.password} onChange={onChange} placeholder="Password" />
-                <input name="verify" type="password" value={form.verify} onChange={onChange} placeholder="Verify Password" />
+                <form onSubmit={handleSubmit} className="auth-form">
+                    <input name="username" value={form.username} onChange={onChange} placeholder="Username" />
+                    <input name="password" type="password" value={form.password} onChange={onChange} placeholder="Password" />
+                    <input name="verify" type="password" value={form.verify} onChange={onChange} placeholder="Verify Password" />
 
-                <button disabled={loading} type="submit">{loading ? "בודק..." : "המשך"}</button>
-                {error && <p>{error}</p>}
-            </form>
-            <p>
-                כבר רשומה?{" "}
-                <Link to="/login">כניסה</Link>
-            </p>
+                    <button disabled={loading} type="submit">{loading ? "בודק..." : "המשך"}</button>
+                    {error && <p className="error-msg">{error}</p>}
+                </form>
+                <p>
+                    כבר רשומה?{" "}
+                    <Link to="/login">כניסה</Link>
+                </p>
 
+            </div>
         </div>
     );
 }

@@ -1,0 +1,35 @@
+/* האפקט שהופך את שאר העמוד לחשוך */
+.info-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* החשיכה */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.info-content-card {
+  background: white;
+  padding: 30px;
+  border-radius: 25px;
+  width: 500px;
+  max-width: 90%;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+}
+
+@keyframes popUp {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.info-section h4 {
+  color: var(--accent-color);
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 5px;
+}

@@ -1,0 +1,60 @@
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.auth-form {
+  background: white;
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  width: 350px;
+}
+
+.auth-form button {
+  width: 100%;
+  background: var(--primary-color);
+  color: white;
+  font-size: 1.1rem;
+  margin-top: 15px;
+}
+.albums-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.albums-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* יוצר קוביות אוטומטיות */
+  gap: 20px;
+  justify-content: center;
+}
+
+.album-item {
+  background: #fffef0; /* צהוב בהיר ושמח */
+  border: 2px solid #ffe082;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.album-item:hover {
+  background: #fff9c4;
+  transform: scale(1.05);
+}
+
+.album-title a {
+  text-decoration: none;
+  color: #795548;
+  font-weight: bold;
+  font-size: 1.1rem;
+}

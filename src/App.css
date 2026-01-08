@@ -1,0 +1,95 @@
+:root {
+  --primary-color: #ff9a9e; /* ורוד עליז */
+  --secondary-color: #fad0c4; /* פסטל נעים */
+  --accent-color: #4facfe; /* כחול שמיים */
+  --success-color: #66bb6a; /* ירוק רענן */
+  --bg-gradient: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  --card-bg: #ffffff;
+  --text-main: #333;
+  --border-radius: 15px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-main);
+  min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+input, select, textarea {
+  border: 2px solid #eee;
+  border-radius: 10px;
+  padding: 10px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: var(--accent-color);
+}
+/* App.css - סטייל משותף לכל שורות הבקרה */
+
+.posts-controls, .todos-controls, .albums-controls {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center; /* ממרכז את הכפתורים והחיפוש */
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  width: 100%;
+  max-width: 800px;
+}
+
+/* עיצוב האינפוטים בתוך שורות הבקרה */
+.posts-controls input, .todos-controls input, .albums-controls input,
+.posts-controls select, .todos-controls select, .albums-controls select {
+  border: 2px solid #e3f2fd;
+  padding: 10px 15px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.posts-controls button, .todos-controls button, .albums-controls button {
+  background-color: #4facfe;
+  color: white;
+  border-radius: 12px;
+  padding: 10px 20px;
+  border: none;
+}
+
+
+.item-data {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 150px;         /* כאן את קובעת כמה קצר יהיה הקישור */
+  white-space: nowrap;      /* מונע מהטקסט לרדת שורה */
+  overflow: hidden;         /* מסתיר את מה שיוצא מהגבול */
+  text-overflow: ellipsis;  /* מוסיף את שלוש הנקודות ... */
+  direction: ltr;           /* שהקישור יראה טוב משמאל לימין */
+}
+
+.item-data-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

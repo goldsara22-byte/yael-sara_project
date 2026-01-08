@@ -1,49 +1,40 @@
-/* src/pages/TodosPage.css */
 .todos-page {
-  padding: 12px;
-}
-
-.todos-title {
-  margin: 0 0 12px;
-}
-
-.todos-list {
-  display: grid;
-  gap: 8px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .todo-item {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
+  background: white;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: var(--border-radius);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 15px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  border-right: 6px solid var(--accent-color);
 }
 
-.todo-id {
-  width: 70px;
-  font-weight: bold;
+.todo-done input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--success-color);
 }
 
-.todo-title {
-  flex: 1;
-}
-
-.todo-done {
+.todo-item {
+  background: #fffaf0; /* רקע שמנת */
+  border: 2px solid #fbd38d; /* מסגרת כתומה */
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 10px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 6px;
 }
 
-.todos-empty {
-  padding: 8px 0;
-}
-
-
-.todos-controls {
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+/* משימה שהושלמה מקבלת צבע אחר */
+.todo-item.completed {
+  background: #e6fffa;
+  border-color: #81e6d9;
 }

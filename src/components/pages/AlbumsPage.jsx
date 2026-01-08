@@ -5,6 +5,7 @@ import AddItemBar from "../shared/AddItemBar.jsx";
 import { getAlbumsByUser, postAlbumForUser } from "../../API/albumsAPI.js";
 import { filtered as filterAlbums } from "../../jsHelper/albums.js";
 import SingleAlbum from "../albums/SingleAlbum.jsx";
+import '../../css/AlbumsPage.css';
 
 export default function AlbumsPage() {
   const { user } = useAuth();

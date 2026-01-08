@@ -1,0 +1,132 @@
+/* --- הגדרות עמוד כלליות --- */
+.posts-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.posts-title {
+  text-align: center;
+  color: #4facfe;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+/* --- רשימת הפוסטים - חשוב למניעת חפיפה --- */
+.posts-list {
+  display: flex;
+  flex-direction: column; /* מסדר אותם אחד מתחת לשני ולא כרשת */
+  gap: 40px; /* רווח גדול בין פוסט לפוסט */
+  align-items: center;
+}
+
+/* --- כרטיס הפוסט הראשי --- */
+.single-post-card {
+  background: white;
+  border: 3px solid #4facfe;
+  border-radius: 20px;
+  padding: 25px;
+  width: 100%;
+  max-width: 700px;
+  box-shadow: 10px 10px 0px #bee3f8; /* צל קשיח שמח */
+  transition: transform 0.3s ease;
+  position: relative;
+  box-sizing: border-box; /* מבטיח שהפדינג לא ינפח את הכרטיס */
+}
+
+.single-post-card:hover {
+  transform: translateY(-5px);
+}
+
+/* כותרת ומזהה הפוסט */
+.post-id {
+  font-weight: bold;
+  color: #a1c4fd;
+  margin-bottom: 5px;
+}
+
+.post-title {
+  color: #2b6cb0;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  border-bottom: 2px dashed #a1c4fd;
+  padding-bottom: 10px;
+}
+
+/* --- אזור התוכן (הצג/הסתר) --- */
+.post-content-section {
+  background: #f0f7ff;
+  border: 2px dashed #4facfe;
+  border-radius: 15px;
+  padding: 15px;
+  margin: 20px 0;
+}
+
+.post-body-box {
+  background: white;
+  border: 2px solid #a1c4fd;
+  border-right: 8px solid #4facfe;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 10px;
+  /* פתרון סופי לקישורים ארוכים */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  line-height: 1.5;
+}
+
+/* עיצוב הכפתור הכחול */
+.toggle-body-btn {
+  background: #4facfe;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #2b6cb0;
+  transition: all 0.1s;
+}
+
+.toggle-body-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #2b6cb0;
+}
+
+/* --- אזור התגובות --- */
+.comments-section {
+  background: #f0fff4; /* ירוק בהיר */
+  border: 2px solid #68d391;
+  border-radius: 15px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.comment-item {
+  background: white;
+  border: 1px solid #cbd5e0;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 10px;
+  word-break: break-word; /* מונע מהקישורים בתגובות לברוח */
+}
+
+/* --- כפתורי פעולה (מחק/ערוך) --- */
+.post-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* עיצוב לקישור המקוצר ב-EditButton שדיברנו עליו */
+.item-data {
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  vertical-align: middle;
+}

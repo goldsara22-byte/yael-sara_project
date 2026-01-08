@@ -1,0 +1,62 @@
+.posts-list, .albums-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.post-item, .album-item {
+  background: #fff;
+  border-radius: var(--border-radius);
+  padding: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  border: 1px solid #f0f0f0;
+  transition: transform 0.2s;
+}
+
+.post-item:hover, .album-item:hover {
+  transform: scale(1.02);
+  background: #fffef0; /* צהבהב עדין במעבר עכבר */
+}
+
+.photo-item {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.photo-item img {
+  transition: transform 0.5s;
+}
+
+.photo-item img:hover {
+  transform: scale(1.1);
+}
+
+.album-item {
+  background: #ebf8ff; /* כחול בהיר */
+  border: 3px double #4299e1; /* מסגרת כפולה */
+  border-radius: 20px;
+  padding: 20px;
+  transition: 0.3s;
+}
+
+.photo-item {
+  border: 4px solid #fff;
+  outline: 2px solid #e2e8f0; /* מסגרת כפולה לתמונה */
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* פתרון לקישורים ארוכים - הצגת שורה אחת עם שלוש נקודות בסוף */
+.truncate-text {
+  display: block;
+  white-space: nowrap;      /* מונע מהטקסט לרדת שורה */
+  overflow: hidden;         /* מסתיר את מה שחורג מהמסגרת */
+  text-overflow: ellipsis;  /* מוסיף את שלוש הנקודות המיוחלות (...) */
+  max-width: 250px;         /* תבחרי את הרוחב שמתאים לכרטיס שלך */
+  color: #666;              /* צבע מעט יותר עדין לקישור */
+  font-size: 0.85rem;
+}
