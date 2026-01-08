@@ -20,7 +20,7 @@ export function AuthProvider({ children }) {
 
         const found = users[0];
         if (found.website !== password) return { ok: false, msg: "סיסמה שגויה" };
-        const myUser = { id: found.id, name: found.name, username: found.username, email: found.email };
+        const myUser = { id: found.id, name: found.name, email: found.email };
         setUser(myUser);
         localStorage.setItem(LS_KEY, JSON.stringify(myUser));
 
@@ -32,7 +32,7 @@ export function AuthProvider({ children }) {
             const { ok, data: created, msg } = await postUser(userA);
             if (!ok) return { ok: false, msg };
 
-            const myUser = { id: created.id, name: created.name, username: created.username, email: created.email };
+            const myUser = { id: created.id, name: created.name, email: created.email };
             setUser(myUser);
             localStorage.setItem(LS_KEY, JSON.stringify(myUser));
             return { ok: true };

@@ -93,3 +93,109 @@ input:focus {
   align-items: center;
   gap: 8px;
 }
+/* --- סטייל לשורת החיפוש (SearchBar) --- */
+
+/* המיכל הראשי של כל השורה */
+.search-bar-container {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center; /* מרכוז השורה */
+  flex-wrap: wrap;         /* גמישות למסכים קטנים */
+  padding: 15px;
+  background: #fdfdfd;
+  border-radius: 20px;
+  border: 1px solid #f0f0f0;
+  margin-bottom: 20px;
+}
+
+/* הגדרת התוויות (Labels) */
+.search-label {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  font-weight: bold;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+/* עיצוב כל תיבות הבחירה והקלט בתוך שורת החיפוש */
+.search-bar-container select,
+.search-bar-container input {
+  border: 2px solid #e1f5fe; /* תכלת עדין */
+  padding: 8px 15px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: white;
+}
+
+/* אפקט ריחוף ופוקוס */
+.search-bar-container select:focus,
+.search-bar-container input:focus {
+  border-color: #4facfe; /* כחול בולט */
+  box-shadow: 0 0 8px rgba(79, 172, 254, 0.2);
+}
+
+/* רוחב ספציפי לתיבת הטקסט כדי שלא תהיה קטנה מדי */
+.search-bar-container input {
+  min-width: 200px;
+}
+
+/* עיצוב האופציות בתוך הסלקט */
+.search-bar-container select {
+  cursor: pointer;
+}
+/* --- סטייל לשורת הוספת פריט (AddItemBar) --- */
+
+.add-item-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background: #fdfdfd;
+  border-radius: 20px;
+  margin: 10px 0;
+}
+
+/* עיצוב האינפוטים של ההוספה */
+.add-item-input {
+  border: 2px solid #e1f5fe;
+  padding: 8px 15px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.3s ease;
+  min-width: 180px;
+}
+
+.add-item-input:focus {
+  border-color: #4facfe;
+  box-shadow: 0 0 8px rgba(79, 172, 254, 0.2);
+}
+
+/* עיצוב כפתור ההוספה */
+.add-item-button {
+  background-color: #4facfe; /* כחול שמח */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-item-button:hover:not(:disabled) {
+  background-color: #0082e6;
+  transform: translateY(-2px);
+}
+
+.add-item-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}

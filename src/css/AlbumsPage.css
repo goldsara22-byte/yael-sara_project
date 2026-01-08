@@ -60,3 +60,92 @@
   color: #666;              /* צבע מעט יותר עדין לקישור */
   font-size: 0.85rem;
 }
+
+/* --- סטייל לעמוד תמונות האלבום (AlbumPhotosPage) --- */
+
+.album-photos-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.album-title-header {
+  color: #2b6cb0;
+  margin-bottom: 25px;
+  border-bottom: 3px solid #e1f5fe;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.add-photo-section {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+/* רשת התמונות - שימוש ב-Grid גמיש */
+.photos-grid {
+  display: grid;
+  /* repeat(auto-fill...) דואג שהתמונות יסתדרו יפה לפי רוחב המסך */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+  gap: 20px;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+.load-more-container {
+  margin-top: 30px;
+  padding-bottom: 40px;
+}
+
+/* עיצוב כפתור "טען עוד" */
+.load-more-btn {
+  background-color: #4facfe;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
+  transition: all 0.3s ease;
+}
+
+.load-more-btn:hover:not(:disabled) {
+  background-color: #0082e6;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
+}
+
+.load-more-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.no-photos-msg {
+  color: #888;
+  font-style: italic;
+  margin-top: 20px;
+}
+.albums-title {
+  text-align: center;      /* מרכוז הכותרת */
+  color: #4facfe;          /* כחול בהיר ושמח */
+  font-size: 2.5rem;       /* גודל בולט */
+  font-weight: 800;
+  margin: 20px auto 30px;
+  display: block;
+  position: relative;
+}
+
+/* הפס הוורוד הדקורטיבי מתחת לכותרת */
+.albums-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #f6ad55;     /* כתום שמח */
+  margin: 10px auto 0;     /* ממרכז את הפס */
+  border-radius: 2px;
+}

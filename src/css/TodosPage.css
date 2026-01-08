@@ -12,7 +12,7 @@
   display: flex;
   align-items: center;
   gap: 15px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   border-right: 6px solid var(--accent-color);
 }
 
@@ -23,8 +23,10 @@
 }
 
 .todo-item {
-  background: #fffaf0; /* רקע שמנת */
-  border: 2px solid #fbd38d; /* מסגרת כתומה */
+  background: #fffaf0;
+  /* רקע שמנת */
+  border: 2px solid #fbd38d;
+  /* מסגרת כתומה */
   border-radius: 15px;
   padding: 15px;
   margin-bottom: 10px;
@@ -37,4 +39,30 @@
 .todo-item.completed {
   background: #e6fffa;
   border-color: #81e6d9;
+}
+
+.todos-title {
+  text-align: center;
+  /* מרכוז הכותרת */
+  color: #4facfe;
+  /* כחול בהיר ושמח */
+  font-size: 2.5rem;
+  /* גודל בולט */
+  font-weight: 800;
+  margin: 20px auto 30px;
+  display: block;
+  position: relative;
+}
+
+/* הפס הוורוד הדקורטיבי מתחת לכותרת */
+.todos-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #f6ad55;
+  /* כתום שמח */
+  margin: 10px auto 0;
+  /* ממרכז את הפס */
+  border-radius: 2px;
 }

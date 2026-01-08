@@ -1,15 +1,14 @@
 import { useState } from "react";
-// import { useAuth } from "../../components/AuthContext.jsx";
-// const { user } = useAuth();
+
 export default function AddItemBar({
   onAdd,
   onError,
-  addBody,              // optional (err) => void
+  addBody,         
 }) {
   const [textTitle, setTextTitle] = useState("");
   const [textBody, setTextBody] = useState("");
   const [loading, setLoading] = useState(false);
-  const minLen = 1;
+  const minLen = 1;// מחיב שהכותרת תהיה לפחות תו אחד
   const canSubmit = textTitle.trim().length >= minLen && !loading;
 
   async function submit() {
@@ -39,17 +38,17 @@ export default function AddItemBar({
   }
 
   return (
-    <div
+    <div className="add-item-container"
       style={{ display: "flex", gap: 8, alignItems: "center" }}
     >
-      <input
+      <input className="add-item-input"
         value={textTitle}
         onChange={(e) => setTextTitle(e.target.value)}
         onKeyDown={onKeyDown}
         placeholder={"הוסיפי כותרת חדשה..."}
         disabled={loading}
       />
-      {addBody && <input
+      {addBody && <input className="add-item-input"
         value={textBody}
         onChange={(e) => setTextBody(e.target.value)}
         onKeyDown={onKeyDown}
@@ -57,7 +56,7 @@ export default function AddItemBar({
         disabled={loading}
       />}
 
-      <button type="button" onClick={submit} disabled={!canSubmit}>
+      <button type="button" onClick={submit} disabled={!canSubmit} className="add-item-button">
         {loading ? "מוסיף..." : "הוסף"}
       </button>
     </div>

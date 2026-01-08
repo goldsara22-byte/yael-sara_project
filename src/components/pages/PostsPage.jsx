@@ -1,4 +1,4 @@
-import {  useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "../AuthContext.jsx";
 import SearchBar from "../shared/SearchBar.jsx";
 import { getPosts, postPostForUser } from "../../API/postAPI.js";
@@ -13,10 +13,7 @@ export default function PostsPage() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
-  const [savingId, setSavingId] = useState(null);
   const [query, setQuery] = useState({ by: "title", text: "" });
-  const [selectedPostId, setSelectedPostId] = useState(null);
-  const [showComments, setShowComments] = useState(false);
 
   useEffect(() => {
     if (!user) return;
@@ -48,15 +45,6 @@ export default function PostsPage() {
     return filtered(posts, query);
   }, [posts, query]);
 
-  const selectedPost = useMemo(() => {
-    return posts.find((p) => String(p.id) === String(selectedPostId)) || null;
-  }, [posts, selectedPostId]);
-
-  function selectPost(id) {
-    setSelectedPostId(id);
-    setShowComments(false); // כדי שהתגובות לא יישארו פתוחות על פוסט אחר בטעות
-  }
-
   if (!user) return <div className="posts-page">אין משתמש מחובר</div>;
   if (loading) return <div className="posts-page">טוען...</div>;
   if (err) return <div className="posts-page">{err}</div>;
@@ -76,20 +64,19 @@ export default function PostsPage() {
         />
       </div>
       <div className="posts-list">
-              {filteredPosts.map((p) => (
-                <SinglePost
-                  key={p.id}
-                  post={p}
-                  setPosts={setPosts}
-                  onError={setErr}
-                  user={user}
-                />
-              ))}
+        {filteredPosts.map((p) => (
+          <SinglePost
+            key={p.id}
+            post={p}
+            setPosts={setPosts}
+            onError={setErr}
+          />
+        ))}
 
-              {filteredPosts.length === 0 && (
-                <div className="posts-empty">אין posts למשתמש</div>
-              )}
-            </div>
+        {filteredPosts.length === 0 && (
+          <div className="posts-empty">אין posts למשתמש</div>
+        )}
+      </div>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { getInfoByUserId } from "../../API/infoAPI.js";
 import '../../css/info.css';
 
 
-export default function InfoPage() {// לשנות את הסטייל כך ששאר העמוד יהיה חסום
+export default function InfoPage() {
   const [err, setErr] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [userData, setUserData] = useState(null);
@@ -25,10 +25,10 @@ export default function InfoPage() {// לשנות את הסטייל כך ששא�
   return (
     <div>
       {isOpen && userData && (
-        <div className="info-modal-overlay"> {/* זה יוצר את הרקע החשוך */}
-          <div className="info-content-card"> {/* זה הכרטיס הלבן שקופץ */}
+        <div className="info-modal-overlay">
+          <div className="info-content-card"> 
             <button className="close-btn" onClick={() => { setIsOpen(false); setUserData(null); }}>✕</button>
-            {/* General Information */}
+
             <div className="info-section">
               <h4>General Information</h4>
               <p><strong>Name:</strong> {userData.name}</p>
@@ -37,7 +37,6 @@ export default function InfoPage() {// לשנות את הסטייל כך ששא�
               <p><strong>Phone:</strong> {userData.phone}</p>
             </div>
 
-            {/* Address Information */}
             <div className="info-section">
               <h4>Address Information</h4>
               <p><strong>Street:</strong> {userData.address?.street}</p>
@@ -47,7 +46,6 @@ export default function InfoPage() {// לשנות את הסטייל כך ששא�
               <p><strong>Geo:</strong> Lat {userData.address?.geo?.lat}, Lng {userData.address?.geo?.lng}</p>
             </div>
 
-            {/* Company Information */}
             <div className="info-section">
               <h4>Company Information</h4>
               <p><strong>Name:</strong> {userData.company?.name}</p>

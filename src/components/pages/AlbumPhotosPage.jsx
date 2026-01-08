@@ -77,15 +77,15 @@ export default function AlbumPhotosPage() {
 
   return (
     <div className="album-photos-page">
-      <h2>Album: {album.title} (#{album.id})</h2>
+      <h2 className="album-title-header">Album: {album.title} (#{album.id})</h2>
 
       {isOwner && (
-        <div style={{ marginBottom: 12 }}>
+        <div className="add-photo-section">
           <AddItemBar onAdd={addPhoto} onError={() => setErr("שגיאה בהוספת photo")} addBody={true} />
         </div>
       )}
 
-      <div className="photos-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
+      <div className="photos-grid">
         {photos.map((ph) => (
           <SinglePhoto
             key={ph.id}
@@ -97,13 +97,13 @@ export default function AlbumPhotosPage() {
         ))}
       </div>
 
-      <div style={{ marginTop: 12 }}>
+      <div className="load-more-container">
         {hasMore && (
-          <button onClick={() => loadPhotos(currentStart)} disabled={loadingMore}>
+          <button onClick={() => loadPhotos(currentStart)} disabled={loadingMore} className="load-more-btn">
             {loadingMore ? "טוען..." : "Load more"}
           </button>
         )}
-        {photos.length === 0 && <div>אין תמונות</div>}
+        {photos.length === 0 && <div className="no-photos-msg">אין תמונות</div>}
       </div>
     </div>
   );

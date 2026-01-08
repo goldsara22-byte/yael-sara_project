@@ -30,6 +30,15 @@ export default function AlbumsPage() {
     })();
   }, [user]);
 
+   async function handleAddAlbum(title) {
+    try {
+      const created = await postAlbumForUser(user, title);
+      setAlbums((prev) => [created, ...prev]);
+    } catch {
+      setErr("שגיאה בהוספת album");
+    }
+  }
+
   const filtered = useMemo(() => {
     return filterAlbums(albums, query);
   }, [albums, query]);
@@ -49,14 +58,7 @@ export default function AlbumsPage() {
       <div className="albums-list">
         <div style={{ marginBottom: 12 }}>
           <AddItemBar
-            onAdd={async (title) => {
-              try {
-                const created = await postAlbumForUser(user, title);
-                setAlbums((prev) => [created, ...prev]);
-              } catch {
-                setErr("שגיאה בהוספת album");
-              }
-            }}
+            onAdd={handleAddAlbum}
             onError={() => setErr("שגיאה בהוספת album")}
             addBody={false}
           />

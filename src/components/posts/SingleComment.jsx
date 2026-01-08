@@ -1,8 +1,10 @@
 import EditButton from "../shared/EditButton.jsx";
 import DeleteButton from "../shared/DeleteButton.jsx";
+import { useAuth } from "../AuthContext.jsx";
 import { deleteCommentById, patchCommentBodyById } from "../../API/commentAPI.js";
 
-export default function SingleComment({ comment, user, onLocalUpdate, onLocalDelete, onError }) {
+export default function SingleComment({ comment, onLocalUpdate, onLocalDelete, onError }) {
+  const { user } = useAuth();
   const isCommentOwner = user && String(user.email) === String(comment.email);
 
   async function handleDelete() {

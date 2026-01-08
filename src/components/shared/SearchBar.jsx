@@ -22,8 +22,8 @@ export default function SearchBar({
   }, [by, text, status, onChange]);
 
   return (
-    <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-      <label style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
+    <div className="search-bar-container">
+      <label className="search-label">
         Search by:
         <select value={by} onChange={(e) => setBy(e.target.value)}>
           {options.map((o) => (
@@ -41,7 +41,7 @@ export default function SearchBar({
       />
 
       {showStatus && (
-        <label style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
+        <label className="search-label">
           Status:
           <select value={status} onChange={(e) => setStatus(e.target.value)}>
             <option value="all">הכל</option>

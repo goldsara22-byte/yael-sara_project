@@ -130,3 +130,23 @@
   display: inline-block;
   vertical-align: middle;
 }
+.posts-title {
+  text-align: center;      /* מרכוז הכותרת */
+  color: #4facfe;          /* כחול בהיר ושמח */
+  font-size: 2.5rem;       /* גודל בולט */
+  font-weight: 800;
+  margin: 20px auto 30px;
+  display: block;
+  position: relative;
+}
+
+/* הפס הדקורטיבי מתחת לכותרת הפוסטים - בצבע כתום-צהוב */
+.posts-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #f6ad55;     /* כתום שמח */
+  margin: 10px auto 0;     /* ממרכז את הפס */
+  border-radius: 2px;
+}

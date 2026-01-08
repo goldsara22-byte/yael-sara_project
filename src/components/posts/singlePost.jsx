@@ -2,10 +2,12 @@ import { useState } from "react";
 import EditButton from "../shared/EditButton.jsx";
 import DeleteButton from "../shared/DeleteButton.jsx";
 import Comments from "./Comments.jsx";
+import { useAuth } from "../AuthContext.jsx";
 import { deletePostById, patchPostTitleById, patchPostBodyById } from "../../API/postAPI.js";
 
-export default function SinglePost({ post, setPosts, onError, user }) {
+export default function SinglePost({ post, setPosts, onError }) {
   const [showContents, setShowContents] = useState(false);
+  const { user } = useAuth();
   const isOwner = user && String(user.id) === String(post.userId);
 
   async function handleDeletePost(p) {
@@ -43,13 +45,12 @@ export default function SinglePost({ post, setPosts, onError, user }) {
   }
 
   return (
-    // className="post-item" 
     <div className="single-post-card">
       <div className="post-header">
         {isOwner && <DeleteButton
           onDelete={() => handleDeletePost(post)}
           onError={() => onError("שגיאה במחיקת post")}
-        >
+        > 
           ❌
         </DeleteButton>}
         <div className="post-id">#{post.id}</div>
@@ -69,7 +70,7 @@ export default function SinglePost({ post, setPosts, onError, user }) {
           onSave={updatePostBody}></EditButton> : <div className="post-body">{post.body}</div>)}
       </div>
       <div className="post-footer">
-        <Comments postId={post.id} user={user} onError={onError} />
+        <Comments postId={post.id} onError={onError} />
       </div>
     </div>
   );
