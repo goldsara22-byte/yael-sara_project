@@ -24,8 +24,8 @@ export default function LoginPage() {
         setLoading(false);
         return;
       }
-      // Success -> navigate to protected area (preserve original route)
-      navigate("/home", { replace: true });
+      // Success -> navigate to protected area with userId
+      navigate(`/home/users/${result.userId}`, { replace: true });
     } catch (err) {
       setError("שגיאה בכניסה");
     }

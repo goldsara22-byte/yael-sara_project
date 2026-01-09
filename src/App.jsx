@@ -21,7 +21,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/register/details" element={<RegisterDetailsPage />} />
 
-          <Route path="/home/*" element={<HomePage />}>
+          <Route path="/home/users/:userId/*" element={<HomePage />}>
             <Route path="todos" element={<TodosPage />} />
             <Route path="posts" element={<PostsPage />} />
             <Route path="albums" element={<AlbumsPage />} />

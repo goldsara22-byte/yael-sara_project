@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
         setUser(myUser);
         localStorage.setItem(LS_KEY, JSON.stringify(myUser));
 
-        return { ok: true };
+        return { ok: true, userId: found.id };
     }
 
     async function register(userA) {
@@ -35,7 +35,7 @@ export function AuthProvider({ children }) {
             const myUser = { id: created.id, name: created.name, email: created.email };
             setUser(myUser);
             localStorage.setItem(LS_KEY, JSON.stringify(myUser));
-            return { ok: true };
+            return { ok: true, userId: created.id };
         } catch (err) {
             return { ok: false, msg: "שגיאת רשת" };
         }

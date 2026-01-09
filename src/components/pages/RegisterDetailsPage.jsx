@@ -67,10 +67,13 @@ export default function RegisterDetailsPage() {
         };
 
         try {
-            register(newUser);
+            const result = await register(newUser);
             setLoading(true);
-            navigate("/home");
-
+            if (result.ok) {
+                navigate(`/home/users/${result.userId}`);
+            } else {
+                setError(result.msg);
+            }
         } catch (err) {
             setError("שגיאה בשמירת המשתמש");
         } finally {

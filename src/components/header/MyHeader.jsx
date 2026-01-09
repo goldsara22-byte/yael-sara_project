@@ -1,5 +1,5 @@
 
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../AuthContext.jsx";
 import InfoPage from "./info.jsx";
 import '../../css/MyHeader.css';
@@ -7,6 +7,7 @@ import '../../css/MyHeader.css';
 export default function MyHeader() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const { userId } = useParams();
 
   const onLogout = () => {
     logout();
@@ -21,10 +22,10 @@ export default function MyHeader() {
 
       <nav className="main-nav">
         
-        <NavLink to="/home" style={{ marginRight: 8 }}>Home</NavLink>
-        <NavLink to="/home/todos" style={{ marginRight: 8 }}>Todos</NavLink>
-        <NavLink to="/home/posts" style={{ marginRight: 8 }}>Posts</NavLink>
-        <NavLink to="/home/albums" style={{ marginRight: 8 }}>Albums</NavLink>
+        <NavLink to={`/home/users/${userId}`} style={{ marginRight: 8 }}>Home</NavLink>
+        <NavLink to={`/home/users/${userId}/todos`} style={{ marginRight: 8 }}>Todos</NavLink>
+        <NavLink to={`/home/users/${userId}/posts`} style={{ marginRight: 8 }}>Posts</NavLink>
+        <NavLink to={`/home/users/${userId}/albums`} style={{ marginRight: 8 }}>Albums</NavLink>
       </nav>
 
       <div className="header-right-side">
