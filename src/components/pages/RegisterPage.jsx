@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { getUserByUsername } from "../../API/userAPI.js";
 import '../../css/AuthPages.css';
 
 export default function RegisterPage() {
@@ -29,13 +30,13 @@ export default function RegisterPage() {
         try {
             setLoading(true);
 
-            const res = await fetch(
-                `http://localhost:3000/users?username=${encodeURIComponent(form.username)}`,
-                { method: "GET" }
-            );
-            if (!res.ok) return { ok: false, msg: "שגיאת שרת" };
+            const res = await getUserByUsername(form.username);
+            if (!res.ok) {
+                setError("שגיאת שרת");
+                return;
+            }
 
-            const users = await res.json();
+            const users = res.data;
 
             if (users.length > 0) {
                 setError("שם משתמש כבר קיים");
