@@ -8,10 +8,8 @@ async function getTodosByUser(user) {
 }
 
 async function deleteTodoById(id) {
-    console.log("Deleting todo with id:", id);
     const res = await deleteGeneralAPI(`/todos/${id}`);
     if (!res.ok) throw new Error("delete failed");
-    console.log("Delete response status:", res.status);
 }
 
 async function patchTodoComplite(todo) {
